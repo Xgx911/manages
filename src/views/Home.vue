@@ -4,46 +4,38 @@
       <el-header>Header</el-header>
       <el-container>
         <el-aside width="15%">
-          <el-menu default-active="1-1"
-                   class="el-menu-vertical-demo"
+          <el-menu class="el-menu-vertical-demo"
+                   router
+                   :default-active="$route.path"
                    @open="handleOpen"
                    @close="handleClose">
-            <el-submenu index="1">
+            <el-submenu index="/one">
               <template slot="title">
                 <i class="el-icon-location"></i>
                 <span>导航一</span>
               </template>
-              <el-menu-item index="1-1">
-                <router-link tag="div"
-                             to="/">选项1</router-link>
+              <el-menu-item index="/one">
+                选项1
               </el-menu-item>
-              <el-menu-item index="1-2">
-                <router-link tag="div"
-                             to="/two">echarts-scroll</router-link>
+              <el-menu-item index="/two">
+                echarts-scroll
               </el-menu-item>
-              <el-menu-item index="1-3">
-                <router-link tag="div"
-                             to="/three">echarts</router-link>
+              <el-menu-item index="/three">
+
+                echarts
               </el-menu-item>
             </el-submenu>
-            <el-menu-item index="2">
-              <router-link tag="div"
-                           to="/four">
-                <!-- <i class="el-icon-menu"></i> -->
-                导航二
-              </router-link>
+            <el-menu-item index="/four">
+              <i class="el-icon-menu"></i>
+              导航二
+
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="shanlan">
               <i class="el-icon-document"></i>
-              <!-- <div slot="title"> -->
-              <router-link to="shanlan"
-                           tag="span"> 云标签</router-link>
-              <!-- </div> -->
+              云标签
             </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-setting"></i>
-              <router-link to="table"
-                           tag="span"> 表格</router-link>
+            <el-menu-item index="table">
+              表格
             </el-menu-item>
           </el-menu>
         </el-aside>

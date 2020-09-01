@@ -19,7 +19,7 @@
                    :h="item.h"
                    :i="item.i"
                    :key="index">
-          <echarLine />
+          <echar-line />
         </grid-item>
       </grid-layout>
     </div>
@@ -44,11 +44,11 @@
 import layoutData from '../server/layoutData.json'
 import VueGridLayout from 'vue-grid-layout'
 import echarLine from '@/components/echart-line'
-import mixin from '@/components/mixin/index.js'
+// import mixin from '@/components/mixin/index.js'
 const GridLayout = VueGridLayout.GridLayout
 const GridItem = VueGridLayout.GridItem
 export default {
-  mixins: [mixin],
+  // mixins: [mixin],
   data () {
     return {
       // 布局数据
@@ -68,9 +68,9 @@ export default {
     }
   },
   components: {
-    GridLayout,
-    GridItem,
-    echarLine
+    'grid-layout': GridLayout,
+    'grid-item': GridItem,
+    'echar-line': echarLine
   },
   methods: {
     init () {

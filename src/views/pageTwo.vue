@@ -23,15 +23,15 @@
       <div class="echart-show"
            id="test-char"
            ref="line"></div>
-      <!-- <echarLine class="echart-show"
-                 :setlist='list' /> -->
+      <echar-line class="echart-show"
+                  :setlist='list' />
     </div>
 
   </div>
 </template>
 <script>
 import vueSeamless from 'vue-seamless-scroll'
-import echarLine from '@/components/echart-line'
+import echarLine from '@/components/echart-line.vue'
 var lineChar
 export default {
   data () {
@@ -78,8 +78,8 @@ export default {
     }
   },
   components: {
-    vueSeamless,
-    echarLine
+    'vue-seamless-scroll': vueSeamless,
+    'echar-line': echarLine
   },
   computed: {
     optionSetting () {
@@ -97,7 +97,7 @@ export default {
   },
   created () { },
   mounted () {
-    // this.initLineChar()
+    this.initLineChar()
     const target = { aa: '测试数据' }
     const cour = { aa: '修改' }
     const c = {}
