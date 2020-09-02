@@ -9,7 +9,7 @@
 </template>
 <script>
 import IEcharts from 'vue-echarts-v3/src/full.js'
-import 'echarts/lib/chart/line'
+// import 'echarts/lib/chart/line'
 export default {
   data () {
     return {

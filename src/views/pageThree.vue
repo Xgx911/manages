@@ -32,7 +32,7 @@
     {{ update }}
     <br>
     <div>{{msg}}</div>
-    <div>{{mixinMsg}}</div>
+    <!-- <div>{{mixinMsg}}</div> -->
     <el-button @click="onClick"
                size="mini">点一下</el-button>
     <br>

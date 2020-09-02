@@ -104,7 +104,7 @@ export default {
     const end = Object.assign(target, cour, c)
     console.log(target, '天际')
     console.log(end, '源数据')
-    this.initSlint()
+    // this.initSlint()
   },
   methods: {
     initLineChar () {
@@ -138,21 +138,21 @@ export default {
     },
     toPath () {
       this.$router.push({ name: 'About', params: { pam: '我要传递的参数' } })
-    },
-    async initSlint () {
-      const num = await this.initOne()
-      console.log('await', num)
-      console.log('普通执行')
-    },
-    initOne () {
-      return new Promise((resolve, reject) => {
-        const sino = parseInt(Math.random() * 6 + 1)
-        setTimeout(() => {
-          console.log('await')
-          resolve(sino)
-        }, 3000)
-      })
     }
+    // async initSlint () {
+    //   const num = await this.initOne()
+    //   console.log('await', num)
+    //   console.log('普通执行')
+    // },
+    // initOne () {
+    //   return new Promise((resolve, reject) => {
+    //     const sino = parseInt(Math.random() * 6 + 1)
+    //     setTimeout(() => {
+    //       console.log('await')
+    //       resolve(sino)
+    //     }, 3000)
+    //   })
+    // }
   }
 }
 </script>

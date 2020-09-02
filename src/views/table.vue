@@ -119,6 +119,7 @@ export default {
       this.$router.push({ name: 'detail', query: { mess: JSON.stringify(data) } })
       this.$store.commit('setKeepAlive', ['detail'])
     }
+
   },
   beforeRouteLeave (to, from, next) {
     if (to.name === 'detail') {
@@ -148,6 +149,20 @@ export default {
   },
   mounted () {
     console.log('加载')
+
+    let a = '一号'
+    const b = '二号'
+
+    const arr = {
+      c: '',
+      d: ''
+    }
+    Object.assign(arr, {
+      c: a,
+      d: b
+    })
+    a = '修改数据'
+    console.log(arr, '对象', a)
   },
   activated () {
     console.log('缓存---', this.$route.meta)
