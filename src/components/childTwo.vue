@@ -19,7 +19,15 @@ export default {
   data () {
     return {}
   },
-  inject: ['setOption']
+  inject: ['setOption'],
+  mounted(){
+    this.$bus.$on('setData',data=>{
+      console.log(data,'接受',this.$bus)
+    })
+  },
+  beforeDestroy(){
+    this.$bus.$off('setData')
+  }
 }
 </script>
 <style lang="scss">

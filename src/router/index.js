@@ -48,6 +48,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "table" */'../views/table')
       },
       {
+        path: '/d3model',
+        name: 'd3model',
+        meta: { keepAlive: true, isBack: false },
+        component: () => import(/* webpackChunkName: "table" */'../views/d3model')
+      },
+      {
         path: '/detail',
         name: 'detail',
         meta: { keepAlive: false },

@@ -93,6 +93,14 @@ export default {
   created () {
     this.init()
     console.log('组件内的created')
+    let arr = [1,2,3,4,5,6,7,8,9 ]
+
+  let arr1= arr.map((e)=>{
+      return e>3
+    })
+  console.log( arr1 )
+
+
   }
 }
 </script>

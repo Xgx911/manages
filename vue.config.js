@@ -3,7 +3,7 @@ const cdn = {
   // 忽略打包的第三方库
   externals: {
     vue: 'Vue',
-    echarts: 'echarts',
+    // echarts: 'echarts',
     'element-ui': 'ELEMENT'
     // vuex: 'Vuex',
     // 'vue-router': 'VueRouter',
@@ -14,7 +14,7 @@ const cdn = {
   js: [
     'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',
     'https://cdn.bootcss.com/element-ui/2.4.11/index.js',
-    'https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js'
+    // 'https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js'
   ],
   css: []
 }

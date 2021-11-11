@@ -45,10 +45,10 @@
         </el-main>
       </el-container>
     </el-container>
-    <div id="moves"
+    <!-- <div id="moves"
          @mousedown="move">
       <span v-show="false"> {{positionX}} {{positionY}}</span>
-    </div>
+    </div> -->
   </div>
 </template>
 

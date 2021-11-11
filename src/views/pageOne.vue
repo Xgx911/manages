@@ -24,7 +24,10 @@
       <span class="button-cover">按钮1</span>
       <span class="button-cover">按钮2</span>
       <span class="button-cover">按钮3</span>
+     <div class="comts" @mouseover="mouseover($event)" @mouseout="mouseout" >
+       <div class="comchild" v-if="show" > 1111</div>
 
+     </div>
       <hr />
       <div @click="refreshCode">
         <sidentify :identifyCode="identifyCode"
@@ -59,7 +62,8 @@ export default {
         fixedNumber: [4, 3]
       },
       identifyCode: '',
-      identifyCodes: '1234567890'
+      identifyCodes: '1234567890',
+      show:false
     }
   },
   computed: {
@@ -73,6 +77,14 @@ export default {
   },
 
   methods: {
+    mouseover(){
+      console.log( '进入' )
+      this.show = true
+    },
+    mouseout(){
+      console.log( '离开' )
+      this.show = false
+    },
     updatemess () {
       this.$store.commit('updateMess', '我要修改的数据')
     },
@@ -150,6 +162,20 @@ export default {
 }
 </script>
 <style lang="scss">
+.comts{
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  position: relative;
+  .comchild{
+    position: absolute;
+  left: -100px;
+  top: -10px;
+  background: antiquewhite;
+  width: 90px;
+height: 90px;
+  }
+}
 .brek-img {
   width: 500px;
   height: 360px;

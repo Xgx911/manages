@@ -4,13 +4,13 @@
       <vue-seamless-scroll :data="projectDesList"
                            :class-option="optionSetting"
                            class="seamless-warp">
-        <!-- //参数配置，计算属性 -->
+
         <ul class="item">
           <li v-for="(item, key) in projectDesList"
               :key="key">
             <span class="title"
                   v-text="item.title"></span>
-            <span v-text="item.date"> </span>
+            <!-- <span v-text="item.date"> </span> -->
           </li>
         </ul>
       </vue-seamless-scroll>
@@ -20,11 +20,14 @@
     <el-button size="mini"
                @click="toPath">跳转页面</el-button>
     <div class="show-char">
-      <div class="echart-show"
+      <!-- <div class="echart-show"
            id="test-char"
-           ref="line"></div>
+           ref="line"></div> -->
+                 <echar-line class="echart-show"
+                  :setlist='list' />
       <echar-line class="echart-show"
                   :setlist='list' />
+        <div class="echart-show" ><yibiao /> </div>
     </div>
 
   </div>
@@ -32,6 +35,7 @@
 <script>
 import vueSeamless from 'vue-seamless-scroll'
 import echarLine from '@/components/echart-line.vue'
+import yibiao from '@/components/yibiao.vue'
 var lineChar
 export default {
   data () {
@@ -79,7 +83,8 @@ export default {
   },
   components: {
     'vue-seamless-scroll': vueSeamless,
-    'echar-line': echarLine
+    'echar-line': echarLine,
+    'yibiao':yibiao
   },
   computed: {
     optionSetting () {
@@ -97,13 +102,13 @@ export default {
   },
   created () { },
   mounted () {
-    this.initLineChar()
+    // this.initLineChar()
     const target = { aa: '测试数据' }
     const cour = { aa: '修改' }
     const c = {}
     const end = Object.assign(target, cour, c)
-    console.log(target, '天际')
-    console.log(end, '源数据')
+    // console.log(target, '天际')
+    // console.log(end, '源数据')
     // this.initSlint()
   },
   methods: {
