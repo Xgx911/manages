@@ -8,11 +8,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    redirect: '/one',
     component: () => import(/* webpackChunkName: "Home" */'../views/Home.vue'),
     children: [
       {
-        path: '/one',
+        path: '',
         name: 'pageone',
         component: () => import(/* webpackChunkName: "pageOne" */'../views/pageOne')
       },

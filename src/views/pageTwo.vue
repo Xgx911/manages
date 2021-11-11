@@ -23,8 +23,7 @@
       <!-- <div class="echart-show"
            id="test-char"
            ref="line"></div> -->
-                 <echar-line class="echart-show"
-                  :setlist='list' />
+
       <echar-line class="echart-show"
                   :setlist='list' />
         <div class="echart-show" ><yibiao /> </div>
