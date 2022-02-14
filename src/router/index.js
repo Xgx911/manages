@@ -57,6 +57,12 @@ const routes = [
         name: 'detail',
         meta: { keepAlive: false },
         component: () => import(/* webpackChunkName: "detail" */'../views/detail')
+      },
+      {
+        path: '/superflow',
+        name: 'superflow',
+        meta: { keepAlive: false },
+        component: () => import(/* webpackChunkName: "detail" */'../views/superflow')
       }
     ]
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="pageOne">
-    <div class="scroll-wid">
+    <!-- <div class="scroll-wid">
       <vue-seamless-scroll :data="projectDesList"
                            :class-option="optionSetting"
                            class="seamless-warp">
@@ -10,11 +10,10 @@
               :key="key">
             <span class="title"
                   v-text="item.title"></span>
-            <!-- <span v-text="item.date"> </span> -->
           </li>
         </ul>
       </vue-seamless-scroll>
-    </div>
+    </div> -->
     <el-button size="mini"
                @click="updateNum">传递数据</el-button>
     <el-button size="mini"
@@ -24,8 +23,8 @@
            id="test-char"
            ref="line"></div> -->
 
-      <echar-line class="echart-show"
-                  :setlist='list' />
+      <!-- <echar-line class="echart-show"
+                  :setlist='list' /> -->
         <div class="echart-show" ><yibiao /> </div>
     </div>
 
@@ -188,8 +187,8 @@ export default {
   display: inline-block;
 }
 .echart-show {
-  width: 400px;
-  height: 300px;
+  // width: 400px;
+  // height: 300px;
   border: 1px solid red;
 }
 .show-char {
