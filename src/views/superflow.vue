@@ -121,6 +121,8 @@
           :link-base-style="linkBaseStyle"
           :link-style="linkStyle"
           :link-desc="linkDesc"
+          :node-list="nodeList"
+          :link-list="linkList"
         >
           <template v-slot:node="{ meta }">
             <div
@@ -139,10 +141,9 @@
       :title="drawerConf.title"
       :visible.sync="drawerConf.visible"
       :close-on-click-modal="false"
-      width="500px"
     >
+      <!--         @keyup.native.enter="settingSubmit" -->
       <el-form
-        @keyup.native.enter="settingSubmit"
         @submit.native.prevent
         v-show="drawerConf.type === drawerType.node"
         ref="nodeSetting"
@@ -156,14 +157,21 @@
           >
           </el-input>
         </el-form-item>
-        <el-form-item label="节点描述" prop="desc">
+        <!-- <el-form-item label="节点描述" prop="desc">
           <el-input
             v-model="nodeSetting.desc"
             placeholder="请输入节点描述"
             maxlength="30"
           >
           </el-input>
-        </el-form-item>
+        </el-form-item> -->
+        <ditor
+          v-if="drawerConf.visible"
+          ref="wangDitor"
+          :value="wangDesc"
+          :wangId="addNum"
+          @setData="setData"
+        />
       </el-form>
       <el-form
         @keyup.native.enter="settingSubmit"
@@ -190,28 +198,37 @@ const drawerType = {
   node: 0,
   link: 1,
 };
-
+import ditor from "@/components/wangditor";
 export default {
   data() {
     return {
       addNum: 1,
+      remark: "",
       drawerType,
+      wangDesc: "",
+      nodeList: [],
+      linkList: [],
       drawerConf: {
         title: "",
         visible: false,
         type: null,
         info: null,
         open: (type, info) => {
-            debugger
+          // debugger;
           const conf = this.drawerConf;
           conf.visible = true;
           conf.type = type;
           conf.info = info;
           if (conf.type === drawerType.node) {
             conf.title = "节点";
-            if (this.$refs.nodeSetting) this.$refs.nodeSetting.resetFields();
+
+            // if (this.$refs.nodeSetting) this.$refs.nodeSetting.resetFields();
+            if (this.$refs.nodeSetting) this.wangDesc = "";
             this.$set(this.nodeSetting, "name", info.meta.name);
             this.$set(this.nodeSetting, "desc", info.meta.desc);
+            this.$nextTick(() => {
+              this.wangDesc = info.meta.desc;
+            });
           } else {
             conf.title = "连线";
             if (this.$refs.linkSetting) this.$refs.linkSetting.resetFields();
@@ -383,6 +400,9 @@ export default {
           {
             label: "编辑",
             selected: (node) => {
+              this.$nextTick(() => {
+                // this.$refs.wangDitor.clearText();
+              });
               this.drawerConf.open(drawerType.node, node);
             },
           },
@@ -418,12 +438,23 @@ export default {
       fontList: ["14px Arial", "italic small-caps bold 12px arial"],
     };
   },
+  components: {
+    ditor,
+  },
   mounted() {
     document.addEventListener("mousemove", this.docMousemove);
     document.addEventListener("mouseup", this.docMouseup);
     this.$once("hook:beforeDestroy", () => {
       document.removeEventListener("mousemove", this.docMousemove);
       document.removeEventListener("mouseup", this.docMouseup);
+    });
+
+    let data = JSON.parse(sessionStorage.getItem("data"));
+    const { linkList, nodeList } = data;
+
+    this.$nextTick(() => {
+      this.linkList = linkList;
+      this.nodeList = nodeList;
     });
   },
   methods: {
@@ -447,28 +478,45 @@ export default {
         value: () => ({
           width: 120,
           height: 40,
-          id:'node'+val,
+          id: "node" + val,
           meta: {
             label: "label" + val,
-            name: "name" + val,
+            name: "节点" + val,
           },
         }),
       });
 
       this.addNum++;
     },
+    setData(val) {
+      this.remark = val;
+    },
     pointflow() {
-      console.log(this.$refs.superFlow.toJSON(),this.$refs.superFlow.selectedAll());
+      // console.log(
+      //   this.$refs.superFlow.toJSON(),
+      //   JSON.stringify(this.$refs.superFlow.toJSON())
+      // );
+      sessionStorage.setItem(
+        "data",
+        JSON.stringify(this.$refs.superFlow.toJSON())
+      );
+      // let data = JSON.parse(sessionStorage.getItem("data"));
+      this.$store.commit("uploadWang", JSON.stringify(this.$refs.superFlow.toJSON()));
     },
     linkDesc(link) {
       return link.meta ? link.meta.desc : "";
     },
     settingSubmit() {
       const conf = this.drawerConf;
+      // debugger;
       if (this.drawerConf.type === drawerType.node) {
         if (!conf.info.meta) conf.info.meta = {};
         Object.keys(this.nodeSetting).forEach((key) => {
-          this.$set(conf.info.meta, key, this.nodeSetting[key]);
+          if (key == "desc") {
+            this.$set(conf.info.meta, key, this.remark);
+          } else {
+            this.$set(conf.info.meta, key, this.nodeSetting[key]);
+          }
         });
         this.$refs.nodeSetting.resetFields();
       } else {
@@ -487,7 +535,7 @@ export default {
       console.log(arguments);
     },
     docMousemove({ clientX, clientY }) {
-      console.log("docMousemove");
+      // console.log("docMousemove");
       const conf = this.dragConf;
 
       if (conf.isMove) {
@@ -501,7 +549,7 @@ export default {
       }
     },
     docMouseup({ clientX, clientY }) {
-      console.log("docMouseup");
+      // console.log("docMouseup");
       const conf = this.dragConf;
       conf.isDown = false;
 
@@ -537,7 +585,7 @@ export default {
       }
     },
     nodeItemMouseDown(evt, infoFun) {
-      console.log("nodeItemMouseDown",evt, infoFun,this.dragConf    );
+      // console.log("nodeItemMouseDown", evt, infoFun, this.dragConf);
       const { clientX, clientY, currentTarget } = evt;
       const { top, left } = evt.currentTarget.getBoundingClientRect(); //返回元素的大小及其相对于视口的位置。
       const conf = this.dragConf;

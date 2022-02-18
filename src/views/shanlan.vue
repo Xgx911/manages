@@ -23,6 +23,7 @@
       </el-col>
     </el-row>
     <div class="could">
+      <!-- <ditor /> -->
       <iframe
         name="iframeMap"
         id="iframeMapViewComponent"
@@ -50,40 +51,45 @@
 </template>
 <script>
 // import coludePage from '../../static/could'
+import ditor from "@/components/wangditor";
 export default {
-  data () {
+  data() {
     return {
-      text: '',
+      text: "",
       dialogVisible: false,
-      spanClick: 'handleSpanClick' // html中需要响应的事件
-    }
+      spanClick: "handleSpanClick", // html中需要响应的事件
+    };
+  },
+  components: {
+    ditor,
   },
   methods: {
-    openFrame () {
-      console.log(this.text)
-      var iframeWin = document.getElementById('iframeMapViewComponent')
-        .contentWindow
-      iframeWin.postMessage(this.text, '*')
+    openFrame() {
+      console.log(this.text);
+      var iframeWin = document.getElementById(
+        "iframeMapViewComponent"
+      ).contentWindow;
+      iframeWin.postMessage(this.text, "*");
       window.addEventListener(
-        'message',
+        "message",
         function (event) {
-          console.log(event, event.data)
+          console.log(event, event.data);
         },
         false
-      )
+      );
     },
-    doSomeThing (val) {
-      console.log(val, '接受数据------')
-    }
+    doSomeThing(val) {
+      console.log(val, "接受数据------");
+    },
   },
-  mounted () {
-    const _this = this
+  mounted() {
+    const _this = this;
 
-    window[this.spanClick] = params => {
-      _this.doSomeThing(params)
+    window[this.spanClick] = (params) => {
+      _this.doSomeThing(params);
     };
-  }
-}
+  },
+};
 </script>
 <style lang="scss">
 .about {
@@ -115,7 +121,7 @@ export default {
   display: flex;
 }
 #home {
-  color: red;
+  // color: red;
 }
 #iframeMapViewComponent {
   overflow: scroll;

@@ -4,7 +4,7 @@ const cdn = {
   externals: {
     vue: 'Vue',
     // echarts: 'echarts',
-    'element-ui': 'ELEMENT'
+    // 'element-ui': 'ELEMENT'
     // vuex: 'Vuex',
     // 'vue-router': 'VueRouter',
     // axios: 'axios'
@@ -13,7 +13,7 @@ const cdn = {
   // 通过cdn方式使用
   js: [
     'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',
-    'https://cdn.bootcss.com/element-ui/2.4.11/index.js',
+    // 'https://cdn.bootcss.com/element-ui/2.4.11/index.js',
     // 'https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js'
   ],
   css: []

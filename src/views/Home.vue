@@ -46,6 +46,10 @@
               <i class="el-icon-setting"></i>
               <router-link to="table" tag="span"> 表格</router-link>
             </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-setting"></i>
+              <router-link to="showWang" tag="span"> 显示流程</router-link>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main width="85%">

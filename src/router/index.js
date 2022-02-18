@@ -63,7 +63,13 @@ const routes = [
         name: 'superflow',
         meta: { keepAlive: false },
         component: () => import(/* webpackChunkName: "detail" */'../views/superflow')
-      }
+      },
+      {
+        path: '/showWang',
+        name: 'showWang',
+        meta: { keepAlive: false },
+        component: () => import(/* webpackChunkName: "detail" */'../views/showWang')
+      },
     ]
   },
   {
