@@ -2,7 +2,7 @@
   <div class="wang-main">
     <div v-for="(item, index) in content" :key="index">
       <h2>{{ item.title }}</h2>
-      <div v-html="item.text"   @click="next(item.id)"></div>
+      <div v-html="item.text" @click="next(item.id)"></div>
       <el-button
         class="next"
         v-show="item.isShow"
@@ -15,6 +15,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+// import E from "wangeditor";
 export default {
   data() {
     return {
@@ -37,6 +38,60 @@ export default {
     const { linkList, nodeList } = JSON.parse(this.wangList);
     this.linkData = linkList;
     this.nodeData = nodeList;
+
+    let dataTree = [
+      {
+        name: "aa",
+        value: "aa",
+        children: [
+          {
+            name: "aa1",
+            value: "aa1",
+            children: [
+              {
+                name: "aa1-2",
+                value: "aa1-2",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "bb",
+        value: "bb",
+        children: [
+          {
+            name: "bb1",
+            value: "bb1",
+            children: [
+              {
+                name: "bb1-2",
+                value: "bb1-2",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    // let menumethd = (data) => {
+    //   let data1 = [];
+    //   data.forEach((e,i) => {
+    //     data1.push({
+    //       label: e.name,
+    //       vaue: e.value,
+    //     });
+    //     if (e.children && e.children.length > 0) {
+    //       data1[i].children = menumethd(e.children);
+    //     }
+    //   });
+
+    //   return data1;
+    // };
+
+    // let arrays = menumethd(dataTree);
+    // console.log(arrays,'数组')
+
     let start1 = {}; //开始节点
     let startList = [];
     let linkArr = function (val) {};
@@ -61,6 +116,7 @@ export default {
         );
       }
     });
+    console.log("开始节点", start1);
 
     this.nodeData.forEach((e) => {
       if (e.id == start1.id) {
